@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "796213811970",
+    "firebase_url": "https://log-e2233-default-rtdb.firebaseio.com",
+    "project_id": "log-e2233",
+    "storage_bucket": "log-e2233.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796213811970:android:e11915065ca6e84e98001b",
+        "android_client_info": {
+          "package_name": "com.log"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "796213811970-vf4varm4mr19i4dvgqvvheraa07j1e9p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJ4sttM80qC_mBJgSQ0QCNl21TMycL5VU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "796213811970-re2g432rl2d8rcl1442o6phgq5idogt1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
