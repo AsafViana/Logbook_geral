@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getDatabase, set, ref, onValue, push, child } from 'firebase/database'
+import { getDatabase, set, ref, onValue, push, child, get } from 'firebase/database'
 import { collection, getDoc, addDoc, getFirestore, doc, setDoc } from 'firebase/firestore'
 
 const firebaseConfig = {
@@ -19,5 +19,5 @@ const database = getDatabase(app)
 const firestore = getFirestore(app)
 
 export {
-	firestore, collection, getDoc, addDoc, doc, setDoc
+	database, set, ref, onValue, push, child, get
 }
