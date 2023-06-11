@@ -1,49 +1,54 @@
-import { Center, Text, Box, FlatList, Divider } from 'native-base'
+import { Center, Text, Box, FlatList, Divider, Icon, IconButton, Pressable, Button } from 'native-base'
 import React, { useState, useEffect, useCallback } from 'react'
-import { Entypo, FontAwesome, MaterialIcons } from '@expo/vector-icons'
-import { useRoute } from '@react-navigation/native'
+import { Entypo } from '@expo/vector-icons'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import { color } from '../../../env.json'
 import { onValue, ref, database, get } from '../../service/firebaseConfig'
-import { Teste, Elemento } from '../../service/interfaces'
-import {BotaoTestes} from '../../component'
+import { Teste, Elemento, Lote } from '../../service/interfaces'
+import { BotaoTestes } from '../../component'
 
 export default function index(props) {
 	const {} = props
 	const route = useRoute()
+	const navigation = useNavigation()
 	const elemento = route.params.elemento //'NaCl'
 
 	const [Nome, setNome] = useState('')
-	const [NumeroAtomico, setNumeroAtomico] = useState<number>()
-	const [Testes, setTestes] = useState<Array<Teste>>()
+	const [Lotes, setLotes] = useState<Array<Lote>>()
 
 	const pegaDados = useCallback(() => {
 		onValue(ref(database, 'elementos/' + elemento), (snapshot) => {
 			const data: Elemento = { ...snapshot.val() }
 			setNome(data.nome)
-			setNumeroAtomico(data.numeroAtomico)
-			setTestes(data.testes)
+			setLotes(data.lotes)
 		})
 	}, [elemento])
 
 	useEffect(() => {
 		pegaDados()
+		console.log('ElementoVisualizacao')
 	}, [])
 
-		return (
-			<Box flex={1} p={10} backgroundColor={color.CorEscura}>
-				<Text fontSize={'5xl'} color={color.Branco} pb={5} fontFamily={'poppinsEBold'}>
-					{elemento}
-				</Text>
-				<Text fontSize={'2xl'} color={color.Branco} fontFamily={'poppins'}>
-					{Nome}
-				</Text>
-				<Divider my="2" bgColor={color.CorClara} thickness="3" />
-				<Text pb={5} fontSize={'2xl'} color={color.Branco}>
-					{'NA: '}
-					<Text fontFamily={'poppinsEBold'}>{NumeroAtomico}</Text>
-				</Text>
+	return (
+		<Box flex={1} p={10} backgroundColor={color.CorEscura}>
+			<Text fontSize={'5xl'} color={color.Branco} pb={5} fontFamily={'poppinsEBold'}>
+				{elemento}
+			</Text>
+			<Text fontSize={'2xl'} color={color.Branco} fontFamily={'poppins'}>
+				{Nome}
+			</Text>
+			<Divider my="2" bgColor={color.CorClara} thickness="3" />
 
-				<FlatList data={Testes} renderItem={(item) => <BotaoTestes elemento={elemento} data={item.item.data} nome={item.item.nome} />} keyExtractor={(item) => item.data} />
-			</Box>
-		)
+			<FlatList data={Lotes} renderItem={(item) => <BotaoTestes index={item.index} nl={item.item.numeroDeLote} elemento={elemento} data={item.item.dataDeValidade} nome={item.item.numeroDeAnalise} />} keyExtractor={(item) => item.dataDeValidade} />
+
+			<IconButton
+			onPress={() => navigation.navigate('NovoTeste')}
+				icon={<Icon as={Entypo} name="circle-with-plus" />}
+				_icon={{
+					color: color.CorMuitoClara,
+					size: '6xl',
+				}}
+			/>
+		</Box>
+	)
 }

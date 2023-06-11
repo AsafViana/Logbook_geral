@@ -20,7 +20,7 @@ export default function index(props) {
 				const info: ResumoElementos = {
 					nome: valor.nome,
 					sigla: valor.sigla,
-					testes: valor.testes.length,
+					testes: valor.lotes.length,
 				}
 				listaElementosResumo.push(info)
 			})
