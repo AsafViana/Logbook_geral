@@ -45,7 +45,7 @@ export default function index(props) {
 					<Text fontSize={'4xl'} fontFamily={'poppins'}>
 						{Lote.numeroDeLote}
 					</Text>
-				</Text>
+				</Text> 
 				<Text fontSize={'2xl'} color={color.Branco} fontFamily={'poppinsEBold'}>
 				{'Validade: '}
 				<Text fontSize={'2xl'} fontFamily={'poppins'}>

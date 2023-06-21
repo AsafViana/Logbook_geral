@@ -1,6 +1,5 @@
 import { Center, Text, Box, FlatList, Divider, Icon, IconButton, Pressable, Button } from 'native-base'
 import React, { useState, useEffect, useCallback } from 'react'
-import { Entypo } from '@expo/vector-icons'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { color } from '../../../env.json'
 import { onValue, ref, database, get } from '../../service/firebaseConfig'
@@ -10,7 +9,6 @@ import { BotaoTestes } from '../../component'
 export default function index(props) {
 	const {} = props
 	const route = useRoute()
-	const navigation = useNavigation()
 	const elemento = route.params.elemento //'NaCl'
 
 	const [Nome, setNome] = useState('')
@@ -41,14 +39,7 @@ export default function index(props) {
 
 			<FlatList data={Lotes} renderItem={(item) => <BotaoTestes index={item.index} nl={item.item.numeroDeLote} elemento={elemento} data={item.item.dataDeValidade} nome={item.item.numeroDeAnalise} />} keyExtractor={(item) => item.dataDeValidade} />
 
-			<IconButton
-			onPress={() => navigation.navigate('NovoTeste')}
-				icon={<Icon as={Entypo} name="circle-with-plus" />}
-				_icon={{
-					color: color.CorMuitoClara,
-					size: '6xl',
-				}}
-			/>
+
 		</Box>
 	)
 }

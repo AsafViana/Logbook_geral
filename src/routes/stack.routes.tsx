@@ -2,7 +2,7 @@ import { TransitionSpecs, createStackNavigator } from '@react-navigation/stack'
 import ElementoVisualizacao from '../screen/ElementosVisualizacao'
 import Home from '../screen/Home'
 import TesteDetalhes from '../screen/TesteDetalhes'
-import NovoTeste from '../screen/NovoLote'
+import NovoLote from '../screen/NovoLote'
 import Testes from '../screen/Testes'
 
 const { Screen, Navigator } = createStackNavigator()
@@ -48,7 +48,7 @@ export function StackRoutes() {
 			<Screen name="Home" component={Home} />
 			<Screen name="ElementoVisualizacao" component={ElementoVisualizacao} />
 			<Screen name="TesteDetalhes" component={TesteDetalhes} />
-			<Screen name="NovoTeste" component={NovoTeste} />
+			<Screen name="NovoLote" component={NovoLote} />
 			<Screen name='Testes' component={Testes}/>
 		</Navigator>
 	)

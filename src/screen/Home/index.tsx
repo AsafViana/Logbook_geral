@@ -1,4 +1,4 @@
-import { Center, Text, FlatList } from 'native-base'
+import { Center, Text, FlatList, IconButton, Icon } from 'native-base'
 import React, { useState, useEffect, useCallback } from 'react'
 import { Platform } from 'react-native'
 import { Entypo, FontAwesome, MaterialIcons } from '@expo/vector-icons'
@@ -6,9 +6,11 @@ import { color } from '../../../env.json'
 import Card from '../../component/Card'
 import { onValue, ref, database, get } from '../../service/firebaseConfig'
 import { ResumoElementos, Elemento } from '../../service/interfaces'
+import { useNavigation } from '@react-navigation/native'
 
 export default function index(props) {
 	const {} = props
+	const navigation = useNavigation()
 	const [ElementosResumo, setElementosResumo] = useState<Array<ResumoElementos>>()
 
 	const pegaDados = useCallback(() => {
@@ -35,6 +37,15 @@ export default function index(props) {
 	return (
 		<Center flex={1} p={5} backgroundColor={color.CorEscura}>
 			<FlatList data={ElementosResumo} renderItem={(item) => <Card nome={item.item.nome} quantidadeDeTestes={item.item.testes} sigla={item.item.sigla} />} keyExtractor={(item) => item.sigla} />
+
+			<IconButton
+				onPress={() => navigation.navigate('NovoLote')}
+				icon={<Icon as={Entypo} name="circle-with-plus" />}
+				_icon={{
+					color: color.CorMuitoClara,
+					size: '6xl',
+				}}
+			/>
 		</Center>
 	)
 }
